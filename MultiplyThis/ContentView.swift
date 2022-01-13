@@ -19,10 +19,22 @@ struct ContentView: View {
     @State private var numberOfQuestions = 0
     @State private var listOfQuestions = ["test", "test2"]
     
-    @State private var firstGroup: Array<Int>
-    @State private var secondGroup: Array<Int>
+    @State private var firstGroup = [4]
+    @State private var secondGroup = [4]
     
     @State private var playerScore = 0
+    
+    
+    func getNumbers(group: Array<Any>, maxnumber: Int) -> Array<Any> {
+        
+        let allNumbers = 4...maxNumber
+        
+        for num in 0...numberOfQuestions{
+            group.append(allNumbers.randomElement())
+        }
+        
+        return group
+    }
     
     
     func startGame() {
@@ -31,6 +43,10 @@ struct ContentView: View {
         
         
         listOfQuestions.removeAll()
+        
+        
+        getNumbers(group: firstGroup, maxnumber: maxNumber)
+        getNumbers(group: secondGroup, maxnumber: maxNumber)
         
         
         for number in 4..<maxNumber{
